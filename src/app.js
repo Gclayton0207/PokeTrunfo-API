@@ -1,6 +1,7 @@
 import Express from "express";
 import db from "./config/dbConnect.js";
 import bodyParser from "body-parser";
+import routes from "./routes/pokemonsRoutes.js";
 
 const app = Express();
 
@@ -10,9 +11,7 @@ db.once("open", () => {
 });
 
 app.use(bodyParser.json());
+app.use("/", routes);
 
-app.get("/", (req, res) => {
-  res.status(200).send({ mensagem: "Bem vindo ao PokeTrunfo" });
-});
 
 export default app;
