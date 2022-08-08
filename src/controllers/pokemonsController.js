@@ -6,6 +6,7 @@ class PokemonController {
   };
   static listarpokemons = (req, res) => {
     pokemons.find((err, pokemons) => {
+      pokemons.sort((a,b)=> a._id - b._id);
       res.status(200).json(pokemons);
     });
   };
