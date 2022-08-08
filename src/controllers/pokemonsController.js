@@ -6,7 +6,7 @@ class PokemonController {
   };
   static listarpokemons = (req, res) => {
     pokemons.find((err, pokemons) => {
-      pokemons.sort((a,b)=> a._id - b._id);
+      pokemons.sort((a, b) => a._id - b._id);
       res.status(200).json(pokemons);
     });
   };
@@ -23,6 +23,18 @@ class PokemonController {
       }
     });
   };
+
+  static listarPokemonPorId = (req, res) => {
+    const id = req.params.id;
+
+    pokemons.findById(id, (err, pokemons) => {
+      if(err) {
+        res.status(400).send({message: `${err.message} - Id do pokemon não localizado.`})
+      } else {
+        res.status(200).send(pokemons);
+      }
+    })
+  }
 }
 
 export default PokemonController;
