@@ -63,8 +63,23 @@ class PokemonController {
   };
 
   static batalhaMaiorBST = async (req, res) => {
-    
-    
+    const pokemon1 = req.body.playerOneCard;
+    const pokemon2 = req.body.playerTwoCard;
+    const [resultado1, resultado2] = [
+      await pokemons.findById(pokemon1).exec(),
+      await pokemons.findById(pokemon2).exec(),
+    ];
+    const pokeStatus1 = resultado1.attributes.toObject();
+    const pokeStatus2 = resultado2.attributes.toObject();
+    const pokepower = somar(pokeStatus1, pokeStatus2);
+    const vitoria = comparar(
+      pokepower.poke1,
+      pokepower.poke2,
+      resultado1,
+      resultado2
+    );
+
+    res.status(200).send({ Vencedor: vitoria });
   };
 }
 
