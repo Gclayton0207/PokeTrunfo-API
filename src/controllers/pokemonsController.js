@@ -1,4 +1,6 @@
 import pokemons from "../models/Pokemon.js";
+import { comparar } from "../utils/compararStatus.js";
+import { somar } from "../utils/somarStatus.js";
 
 class PokemonController {
   static home = (req, res) => {
@@ -28,35 +30,42 @@ class PokemonController {
     const id = req.params.id;
 
     pokemons.findById(id, (err, pokemons) => {
-      if(err) {
-        res.status(400).send({message: `${err.message} - Id do pokemon não localizado.`})
+      if (err) {
+        res
+          .status(400)
+          .send({ message: `${err.message} - Id do pokemon não localizado.` });
       } else {
         res.status(200).send(pokemons);
       }
-    })
-  }
+    });
+  };
   static atualizarPokemon = (req, res) => {
     const id = req.params.id;
 
-    pokemons.findByIdAndUpdate(id, {$set: req.body}, (err) => {
-      if(!err) {
-        res.status(200).send({message: 'Pokemon atualizado com sucesso'})
+    pokemons.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+      if (!err) {
+        res.status(200).send({ message: "Pokemon atualizado com sucesso" });
       } else {
-        res.status(500).send({message: err.message})
+        res.status(500).send({ message: err.message });
       }
-    })
-  }
+    });
+  };
   static excluirPokemon = (req, res) => {
     const id = req.params.id;
 
     pokemons.findByIdAndDelete(id, (err) => {
-      if(!err){
-        res.status(200).send({message: 'Pokemon removido com sucesso'})
+      if (!err) {
+        res.status(200).send({ message: "Pokemon removido com sucesso" });
       } else {
-        res.status(500).send({message: err.message})
+        res.status(500).send({ message: err.message });
       }
-    })
-  }
+    });
+  };
+
+  static batalhaMaiorBST = async (req, res) => {
+    
+    
+  };
 }
 
 export default PokemonController;
