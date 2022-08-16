@@ -207,6 +207,11 @@ Em seguida utilize o comando para executar o projeto
 ```
 $ npm run dev
 ```
+## Deploy
+
+Api hospedada no heroku 
+
+[Heroku](https://api-poketrunfo.herokuapp.com/).
 
 ## Desenvolvedor
 
