@@ -15,6 +15,4 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/", routes);
 
-
-
 export default app;
